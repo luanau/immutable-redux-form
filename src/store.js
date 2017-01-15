@@ -2,12 +2,14 @@ import Immutable from 'immutable';
 
 import {combineReducers} from 'redux-immutable';
 
-import {createStore} from 'redux';
+
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 
 import person from './person';
 
-const initialState = Immutable.Map();
+export const initialState = Immutable.Map();
 const rootReducer = combineReducers({person});
-const store = createStore(rootReducer, initialState);
+const store = createStore(rootReducer, initialState, applyMiddleware(thunk));
 
 export default store;

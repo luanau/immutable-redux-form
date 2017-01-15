@@ -12,7 +12,8 @@
     "react-redux": "^5.0.2",
     "redux": "^3.6.0",
     "redux-form": "^6.4.3",
-    "redux-immutable": "^3.0.10"
+    "redux-immutable": "^3.0.10",
+    "redux-thunk": "^2.1.0"
   },
   "scripts": {
     "start": "react-scripts start",

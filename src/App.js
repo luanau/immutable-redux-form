@@ -3,14 +3,23 @@ import logo from './logo.svg';
 import './App.css';
 
 import PersonForm from './PersonForm';
-import {loadPerson} from './person';
+import {loadPerson, createPerson, updatePerson, removePerson} from './person';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators({loadPerson, createPerson, updatePerson, removePerson}, dispatch)
+  };
+}
 
 class App extends Component {
   constructor(props, context) {
     super(props, context);
 
     //Load initial person data
-    loadPerson("");
+    this.props.actions.loadPerson("");
   }
 
   render() {
@@ -29,4 +38,9 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(
+  null,
+  mapDispatchToProps
+)(App);
+
+

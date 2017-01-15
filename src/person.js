@@ -14,7 +14,7 @@ export default function reducer(state = Immutable.Map(), action = {}) {
             return Immutable.fromJS(action.person);//Plain js object from server
 
         case UPDATE:
-            return action.person;//Already immutable type
+            return state.set('person',action.person);//Already immutable type
 
         // do reducer stuff
         default: return state;
@@ -37,7 +37,7 @@ export function loadPerson(name) {
     return fetchPersonFromServer().then(
       response => response.json().then(
           person=>dispatch(
-              updatePerson(person))),
+              updatePerson(Immutable.fromJS(person)))),
       error => console.log('Error:'+error+' getting person ' + name)
     );
   };
