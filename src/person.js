@@ -1,6 +1,6 @@
 // person.js
 import Immutable from 'immutable';
-
+import {initialState} from './store';
 // Actions
 const LOAD   = 'my-app/person/LOAD';
 const CREATE = 'my-app/person/CREATE';
@@ -8,13 +8,13 @@ const UPDATE = 'my-app/person/UPDATE';
 const REMOVE = 'my-app/person/REMOVE';
 
 // Reducer
-export default function reducer(state = Immutable.Map(), action = {}) {
+export default function reducer(state = initialState.get('person'), action = {}) {
     switch (action.type) {
         case LOAD:
             return Immutable.fromJS(action.person);//Plain js object from server
 
         case UPDATE:
-            return state.set('person',action.person);//Already immutable type
+            return action.person;//Already immutable type
 
         // do reducer stuff
         default: return state;
